@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.291" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Birzha.BirzhaController">
+   <children>
+      <LineChart fx:id="dataChart" layoutX="9.0" layoutY="6.0" prefHeight="361.0" prefWidth="581.0">
+        <xAxis>
+          <CategoryAxis fx:id="variableLine" label="переменная" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="valuesChart" label="значения" prefHeight="262.0" prefWidth="36.0" side="LEFT" tickLabelFill="#ff2f2f" />
+        </yAxis>
+      </LineChart>
+      <JFXButton fx:id="analyzeDataBtn" layoutX="245.0" layoutY="361.0" onAction="#AnalyzeData" prefHeight="25.0" prefWidth="129.0" text="Анализ" AnchorPane.bottomAnchor="15.0" />
+      <JFXTextField fx:id="dayChoose" layoutX="18.0" layoutY="356.0" prefHeight="25.0" prefWidth="59.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
+         <focusColor>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#2253e6" />
+                  <Stop color="#f710ff" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </focusColor>
+      </JFXTextField>
+      <JFXButton fx:id="analyzeDayBtn" onAction="#AnalyzeDay" layoutX="100.0" layoutY="360.0" text="Выбрать день" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="100.0">
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#ff1414" />
+                  <Stop color="#0200ff" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+      </JFXButton>
+   </children>
+</AnchorPane>

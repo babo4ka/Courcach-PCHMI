@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+
+<AnchorPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="lines" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.291" xmlns:fx="http://javafx.com/fxml/1" fx:controller="risovashki.Controller">
+   <children>
+      <JFXButton fx:id="addLinesBtn" layoutX="24.0" layoutY="460.0" onAction="#CreateLines" prefHeight="25.0" prefWidth="129.0" text="Добавить линии">
+         <textFill>
+            <LinearGradient endX="1.0" endY="0.5238095101856051" startX="0.5809524059295654">
+               <stops>
+                  <Stop color="#2580ff" />
+                  <Stop color="#ff2c2c" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.580952380952381" startY="0.4285714649018787">
+               <stops>
+                  <Stop color="#b74646" />
+                  <Stop color="#921eff" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+      </JFXButton>
+   </children>
+</AnchorPane>
