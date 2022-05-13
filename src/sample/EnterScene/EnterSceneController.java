@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import sample.Patient;
 
 public class EnterSceneController {
 
@@ -22,9 +23,8 @@ public class EnterSceneController {
 
     @FXML
     private void enter(ActionEvent e){
-        System.out.println(!login_input.getText().equals("")&&!password_input.getText().equals("")?
-                "Логин: " + login_input.getText() + ", пароль: " + password_input.getText():
-                "Введите и логин и пароль");
+        System.out.println(!login_input.getText().equals("")&&!password_input.getText().equals(""));
+        error_lbl.setVisible(!login_input.getText().equals("")&&!password_input.getText().equals("")?false:true);
     }
 
 }

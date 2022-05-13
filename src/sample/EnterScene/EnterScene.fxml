@@ -19,7 +19,7 @@
             </Label>
             <TextField fx:id="login_input" layoutX="25.0" layoutY="69.0" promptText="Логин" styleClass="enter_input" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="24.0" />
             <PasswordField fx:id="password_input" layoutX="24.0" layoutY="124.0" promptText="Пароль" styleClass="enter_input" />
-            <Label fx:id="error_lbl" alignment="CENTER" layoutX="50.0" layoutY="165.0" text="Ошибка авторизации" textAlignment="CENTER" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="48.0">
+            <Label fx:id="error_lbl" visible="false" alignment="CENTER" layoutX="50.0" layoutY="165.0" text="Ошибка авторизации" textAlignment="CENTER" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="48.0">
                <font>
                   <Font size="10.0" />
                </font>
