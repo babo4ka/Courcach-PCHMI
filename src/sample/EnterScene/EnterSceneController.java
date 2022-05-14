@@ -24,7 +24,7 @@ public class EnterSceneController {
     @FXML
     private void enter(ActionEvent e){
         System.out.println(!login_input.getText().equals("")&&!password_input.getText().equals(""));
-        error_lbl.setVisible(!login_input.getText().equals("")&&!password_input.getText().equals("")?false:true);
+        error_lbl.setVisible(login_input.getText().equals("") || password_input.getText().equals(""));
     }
 
 }
