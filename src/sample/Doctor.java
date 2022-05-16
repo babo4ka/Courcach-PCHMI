@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class Doctor {
 
-    private final char separator = '*';
+    private final char separator = '#';
 
     @Getter @Setter
     private String name;

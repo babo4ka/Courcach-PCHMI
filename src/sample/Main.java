@@ -6,17 +6,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.Date;
-
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("./PatientsScene/PatientsScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("./EnterScene/EnterScene.fxml"));
         primaryStage.setTitle("Поликлиника");
-        primaryStage.setScene(new Scene(root, 700, 450));
+        primaryStage.setScene(new Scene(root, 540, 400));
         primaryStage.show();
-        Patient pa = new Patient("Женя", "Иванов", new Date());
+
+        User.loadUsers();
     }
 
 

@@ -6,7 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import sample.Patient;
+import sample.User;
+
 
 public class EnterSceneController {
 
@@ -23,8 +24,18 @@ public class EnterSceneController {
 
     @FXML
     private void enter(ActionEvent e){
-        System.out.println(!login_input.getText().equals("")&&!password_input.getText().equals(""));
-        error_lbl.setVisible(login_input.getText().equals("") || password_input.getText().equals(""));
+        if(login_input.getText().equals("") || password_input.getText().equals("")){
+            error_lbl.setText("Введите данные во все поля");
+            error_lbl.setVisible(true);
+            return;
+        }
+
+        if(User.checkUser(login_input.getText(), password_input.getText())){
+            error_lbl.setText("Успешно!");
+        }else{
+            error_lbl.setText("Неверный логин или пароль!");
+        }
+        error_lbl.setVisible(true);
     }
 
 }
