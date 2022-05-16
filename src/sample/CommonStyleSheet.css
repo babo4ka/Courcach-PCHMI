@@ -32,3 +32,8 @@
 .add_btn_class:hover, .remove_btn_class:hover{
     -fx-background-color: rgba(117, 234, 255, 0.573);
 }
+
+.info_holder{
+    -fx-border-style:solid;
+    -fx-border-color: black;
+}

@@ -9,6 +9,8 @@ import java.util.Date;
 
 public class Doctor {
 
+    private final char separator = '*';
+
     @Getter @Setter
     private String name;
     @Getter @Setter
@@ -18,8 +20,8 @@ public class Doctor {
     private long id;
 
     public Doctor(String _name, String _surname){
-        this.name = _name;
-        this.surname = _surname;
+        this.setName(_name);
+        this.setSurname(_surname);
 
         this.id = new Date().getTime();
 
@@ -27,7 +29,7 @@ public class Doctor {
     }
 
     private String toSaveString(){
-        return this.getName() + "/" + this.getSurname() + "/" + this.getId();
+        return this.getName() + separator + this.getSurname() + separator + this.getId();
     }
 
 

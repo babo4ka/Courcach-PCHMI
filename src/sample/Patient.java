@@ -10,6 +10,8 @@ import java.util.Date;
 
 public class Patient {
 
+    private final char separator = '*';
+
     //ФИО
     @Getter @Setter
     private String name;
@@ -23,16 +25,17 @@ public class Patient {
     private long id;
 
     public Patient(String _name, String _surname, Date _birthday){
-        this.name = _name;
-        this.surname = _surname;
-        this.birthday = _birthday;
+        this.setName(_name);
+        this.setSurname(_surname);
+        this.setBirthday(_birthday);
 
         this.id = new Date().getTime();
 
+        this.savePatient();
     }
 
     private String toSaveString(){
-        return this.getName() + "/" + this.getSurname() + "/" + this.getBirthday().getTime() + "/" + this.getId();
+        return this.getName() + separator + this.getSurname() + separator + this.getBirthday().getTime() + separator + this.getId();
     }
 
     private void savePatient(){
