@@ -15,7 +15,7 @@
       </Label>
       <TextField fx:id="doc_name_input" layoutX="14.0" layoutY="59.0" promptText="Имя" styleClass="input_class" />
       <TextField fx:id="doc_surname_input" layoutX="176.0" layoutY="59.0" promptText="Фамилия" styleClass="input_class" />
-      <Button onAction="#add_doctor" fx:id="add_doc_btn" layoutX="350.0" layoutY="59.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="136.0" styleClass="btn_class" text="Добавить" />
+      <Button fx:id="add_doc_btn" layoutX="350.0" layoutY="59.0" mnemonicParsing="false" onAction="#add_doctor" prefHeight="25.0" prefWidth="136.0" styleClass="btn_class" text="Добавить" />
       <Label fx:id="doc_error_adding" alignment="CENTER" layoutX="15.0" layoutY="93.0" prefHeight="21.0" prefWidth="472.0" text="Ошибка" textAlignment="CENTER" visible="false" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
          <font>
             <Font size="15.0" />
