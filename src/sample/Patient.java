@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class Patient {
 
-    private final char separator = '#';
+    private static final String separator = "#";
 
     //ФИО
     @Getter @Setter

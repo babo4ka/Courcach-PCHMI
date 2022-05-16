@@ -14,6 +14,8 @@ public class Main extends Application {
         primaryStage.setTitle("Поликлиника");
         primaryStage.setScene(new Scene(root, 700, 500));
         primaryStage.show();
+
+        Doctor.LoadDoctors();
     }
 
 

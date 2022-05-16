@@ -24,7 +24,7 @@
       </Label>
       <TextField fx:id="doc_search_field" layoutX="15.0" layoutY="72.0" prefHeight="25.0" prefWidth="260.0" promptText="Поиск доктора..." styleClass="search_field_class" />
       <ListView fx:id="docs_listview" layoutX="15.0" layoutY="123.0" prefHeight="250.0" prefWidth="260.0" styleClass="list_class" AnchorPane.leftAnchor="15.0" />
-      <Button fx:id="add_doc_btn" layoutX="15.0" layoutY="393.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="260.0" styleClass="add_btn_class" text="Добавить доктора">
+      <Button onAction="#open_add_doctor" fx:id="add_doc_btn" layoutX="15.0" layoutY="393.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="260.0" styleClass="add_btn_class" text="Добавить доктора">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
