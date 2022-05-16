@@ -6,10 +6,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DoctorsScene.DoctorSceneController">
    <children>
-      <MenuButton fx:id="nav_menu" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Меню" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+      <MenuButton fx:id="nav_menu" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" styleClass="nav_menus" stylesheets="@DoctorScene.css" text="Меню" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
         <items>
-          <MenuItem mnemonicParsing="false" text="Пациенты" />
-          <MenuItem mnemonicParsing="false" text="Доктора" />
+          <MenuItem fx:id="nav_patients" mnemonicParsing="false" text="Пациенты" />
+          <MenuItem fx:id="nav_doctors" mnemonicParsing="false" text="Доктора" />
         </items>
       </MenuButton>
    </children>
