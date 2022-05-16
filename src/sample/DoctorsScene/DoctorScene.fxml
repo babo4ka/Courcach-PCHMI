@@ -13,7 +13,7 @@
    <children>
       <MenuButton fx:id="nav_menu" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" styleClass="nav_menus" text="Меню" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
         <items>
-          <MenuItem fx:id="nav_patients" mnemonicParsing="false" text="Пациенты" />
+          <MenuItem onAction="#open_patients_scene" fx:id="nav_patients" mnemonicParsing="false" text="Пациенты" />
           <MenuItem fx:id="nav_doctors" mnemonicParsing="false" text="Доктора" />
         </items>
       </MenuButton>

@@ -9,12 +9,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="add_rec_btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" stylesheets="@../CommonStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PatientsScene.PatientSceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" stylesheets="@../CommonStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PatientsScene.PatientSceneController">
    <children>
       <MenuButton fx:id="nav_menu" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" styleClass="nav_menus" text="Меню" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
          <items>
             <MenuItem fx:id="nav_patients" mnemonicParsing="false" text="Пациенты" />
-            <MenuItem fx:id="nav_doctors" mnemonicParsing="false" text="Доктора" />
+            <MenuItem fx:id="nav_doctors" mnemonicParsing="false" onAction="#open_doctors_scene" text="Доктора" />
          </items>
       </MenuButton>
       <Label layoutX="250.0" layoutY="11.0" text="Учет Пациентов" textAlignment="CENTER">
@@ -46,7 +46,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="remove_pat_btn1" layoutX="14.0" layoutY="87.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="164.0" styleClass="remove_btn_class" text="Добавить справку" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0">
+            <Button fx:id="add_rec_btn" layoutX="14.0" layoutY="87.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="164.0" styleClass="remove_btn_class" text="Добавить справку" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
