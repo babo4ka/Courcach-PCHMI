@@ -1,17 +1,24 @@
 package sample.DoctorsScene;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sample.Doctor;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
-public class DoctorSceneController {
+public class DoctorSceneController implements Initializable {
 
     @FXML
     private MenuButton nav_menu;
@@ -34,7 +41,7 @@ public class DoctorSceneController {
     @FXML
     private TextField doc_search_field;
     @FXML
-    private ListView docs_listview;
+    private ListView<Doctor> docs_listview;
 
 
     @FXML
@@ -52,6 +59,39 @@ public class DoctorSceneController {
         dialog.showAndWait();
     }
 
+    private Doctor choosedDoctor = null;
+
+    @FXML
+    private void delete_doctor(ActionEvent e){
+        if(choosedDoctor == null)return;
+        try{
+            File source = new File("./src/sample/database/doctors.txt");
+            File output = new File("./src/sample/database/doctors2.txt");
+
+            BufferedReader reader = new BufferedReader(new FileReader(source));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(output));
+            String line = null;
+            String docToDelete = choosedDoctor.toSaveString();
+
+            while((line = reader.readLine()) != null){
+                if(!line.equals(docToDelete)){
+                    writer.write(line);
+                    writer.newLine();
+                }
+            }
+
+            reader.close();
+            writer.close();
+
+            source.delete();
+            output.renameTo(source);
+        }catch (IOException err){
+            err.printStackTrace();
+        }
+
+    }
+
+
     @FXML
     private void open_patients_scene(ActionEvent e) throws IOException {
         Stage patientsState = new Stage();
@@ -61,6 +101,30 @@ public class DoctorSceneController {
         patientsState.show();
 
         ((Stage)add_doc_btn.getScene().getWindow()).close();
+
+    }
+
+    private List<Doctor> doctors = null;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        doctors = Doctor.getDoctors();
+
+        ObservableList<Doctor> docsList = FXCollections.observableArrayList();
+        for(Doctor doc : doctors){
+            docsList.add(doc);
+        }
+
+        docs_listview = new ListView<>(docsList);
+
+        docs_listview.setCellFactory(param -> new ListCell<Doctor>(){
+            @Override
+            protected void updateItem(Doctor item, boolean empty) {
+                super.updateItem(item, empty);
+
+                setText(empty || item == null? null : item.getName() + " " + item.getSurname());
+            }
+        });
 
     }
 }

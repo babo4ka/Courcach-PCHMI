@@ -62,7 +62,7 @@ public class Doctor {
     }
 
 
-    private String toSaveString(){
+    public String toSaveString(){
         return this.getName() + separator + this.getSurname() + separator + this.getId();
     }
 

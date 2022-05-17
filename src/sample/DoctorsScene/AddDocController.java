@@ -24,6 +24,8 @@ public class AddDocController {
             return;
         }
 
-        Doctor doctor = new Doctor(doc_name_input.getText(), doc_surname_input.getText());
+        new Doctor(doc_name_input.getText(), doc_surname_input.getText());
+        doc_error_adding.setText("Успешно добавлен новый доктор!");
+        doc_error_adding.setVisible(true);
     }
 }
