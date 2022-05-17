@@ -1,14 +1,17 @@
 package sample.DoctorsScene;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.Doctor;
@@ -41,7 +44,7 @@ public class DoctorSceneController implements Initializable {
     @FXML
     private TextField doc_search_field;
     @FXML
-    private ListView<Doctor> docs_listview;
+    private ListView docs_listview;
 
 
     @FXML
@@ -114,17 +117,19 @@ public class DoctorSceneController implements Initializable {
         for(Doctor doc : doctors){
             docsList.add(doc);
         }
-
-        docs_listview = new ListView<>(docsList);
+        docs_listview.setItems(docsList);
 
         docs_listview.setCellFactory(param -> new ListCell<Doctor>(){
             @Override
             protected void updateItem(Doctor item, boolean empty) {
                 super.updateItem(item, empty);
 
-                setText(empty || item == null? null : item.getName() + " " + item.getSurname());
+                if(empty || item == null)return;
+
+                setGraphic(new Label(item.getName() + " " + item.getSurname()));
             }
         });
+
 
     }
 }
