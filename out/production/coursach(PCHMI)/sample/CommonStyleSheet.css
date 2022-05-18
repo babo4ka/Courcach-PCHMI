@@ -37,3 +37,18 @@
     -fx-border-style:solid;
     -fx-border-color: black;
 }
+
+.list_class{
+    -fx-border-style:none;
+    -fx-background-color: rgba(255, 255, 255, 0);
+}
+
+.list-cell{
+    -fx-border-style:solid;
+    -fx-border-color: black;
+    -fx-cell-size:35px;
+    -fx-cursor:hand;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}

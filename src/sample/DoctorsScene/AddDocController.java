@@ -2,8 +2,10 @@ package sample.DoctorsScene;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import sample.Doctor;
 
 public class AddDocController {
@@ -15,6 +17,9 @@ public class AddDocController {
 
     @FXML
     private Label doc_error_adding;
+
+    @FXML
+    private Button add_doc_btn;
 
     @FXML
     private void add_doctor(ActionEvent e){

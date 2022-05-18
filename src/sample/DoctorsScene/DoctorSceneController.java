@@ -1,9 +1,11 @@
 package sample.DoctorsScene;
 
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,10 +16,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import sample.Doctor;
 
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -46,6 +50,9 @@ public class DoctorSceneController implements Initializable {
     @FXML
     private ListView docs_listview;
 
+    @FXML
+    private Label update_info;
+
 
     @FXML
     private void open_add_doctor(ActionEvent e) throws IOException {
@@ -60,40 +67,59 @@ public class DoctorSceneController implements Initializable {
         dialog.initModality(Modality.APPLICATION_MODAL);
 
         dialog.showAndWait();
+
     }
 
     private Doctor choosedDoctor = null;
+    private List<Doctor> doctors = null;
+    private ObservableList<Doctor> docsList = FXCollections.observableArrayList();
 
     @FXML
     private void delete_doctor(ActionEvent e){
         if(choosedDoctor == null)return;
+
         try{
             File source = new File("./src/sample/database/doctors.txt");
-            File output = new File("./src/sample/database/doctors2.txt");
 
             BufferedReader reader = new BufferedReader(new FileReader(source));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(output));
-            String line = null;
+
+            String line;
             String docToDelete = choosedDoctor.toSaveString();
+            List<String> lines = new ArrayList<>();
 
             while((line = reader.readLine()) != null){
                 if(!line.equals(docToDelete)){
-                    writer.write(line);
-                    writer.newLine();
+                    lines.add(line);
                 }
+            }
+
+            BufferedWriter fake = new BufferedWriter(new FileWriter(source, false));
+            fake.write("");
+            fake.close();
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter(source, true));
+
+            for(String l:lines){
+                System.out.println(l);
+                writer.write(l);
+                writer.newLine();
             }
 
             reader.close();
             writer.close();
 
-            source.delete();
-            output.renameTo(source);
+            doctors.remove(choosedDoctor);
+            docsList.remove(choosedDoctor);
+            choosedDoctor = null;
+
+            doc_name_lbl.setText("Доктор Фамилия Имя");
+            doc_id_lbl.setText("ID:");
+
         }catch (IOException err){
             err.printStackTrace();
         }
 
     }
-
 
     @FXML
     private void open_patients_scene(ActionEvent e) throws IOException {
@@ -107,13 +133,12 @@ public class DoctorSceneController implements Initializable {
 
     }
 
-    private List<Doctor> doctors = null;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         doctors = Doctor.getDoctors();
 
-        ObservableList<Doctor> docsList = FXCollections.observableArrayList();
         for(Doctor doc : doctors){
             docsList.add(doc);
         }
@@ -124,12 +149,21 @@ public class DoctorSceneController implements Initializable {
             protected void updateItem(Doctor item, boolean empty) {
                 super.updateItem(item, empty);
 
-                if(empty || item == null)return;
+                if(empty || item == null){
+                    setGraphic(null);
+                    return;
+                }
 
                 setGraphic(new Label(item.getName() + " " + item.getSurname()));
             }
         });
 
+        docs_listview.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    choosedDoctor = (Doctor) newValue;
+                    doc_name_lbl.setText("Доктор " + choosedDoctor.getSurname() + " " + choosedDoctor.getName());
+                    doc_id_lbl.setText("ID: " + choosedDoctor.getId());
+        });
 
     }
 }
