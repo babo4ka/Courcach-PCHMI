@@ -17,6 +17,7 @@ import sample.Patient;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -46,6 +47,8 @@ public class PatientSceneController implements Initializable {
     private TextField pat_search_field;
     @FXML
     private ListView pats_listview;
+    @FXML
+    private ListView recs_listview;
 
     @FXML private void open_add_patient(ActionEvent e) throws IOException {
         Stage dialog = new Stage();
@@ -111,6 +114,13 @@ public class PatientSceneController implements Initializable {
             err.printStackTrace();
         }
 
+    }
+
+    @FXML
+    private void add_reciepe(ActionEvent e){
+        if(choosedPatient == null)return;
+
+        choosedPatient.addReciepe(new Date());
     }
 
     @FXML

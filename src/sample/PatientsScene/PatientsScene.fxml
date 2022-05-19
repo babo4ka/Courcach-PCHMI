@@ -44,7 +44,7 @@
             <String fx:value="handed-cursor" />
          </styleClass>
       </Button>
-      <AnchorPane fx:id="pat_info_holder" layoutX="473.0" layoutY="72.0" prefHeight="135.0" prefWidth="337.0" styleClass="info_holder" AnchorPane.rightAnchor="15.0">
+      <AnchorPane fx:id="pat_info_holder" layoutX="473.0" layoutY="72.0" prefHeight="237.0" prefWidth="337.0" styleClass="info_holder" AnchorPane.rightAnchor="15.0">
          <children>
             <Label fx:id="pat_name_lbl" layoutX="20.0" layoutY="14.0" text="Пациент Фамилия Имя" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="10.0">
                <font>
@@ -56,7 +56,13 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button onAction="#delete_patient" fx:id="remove_pat_btn" layoutX="271.0" layoutY="96.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="109.0" text="Удалить" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+            <ListView fx:id="recs_listview" layoutX="16.0" layoutY="77.0" prefHeight="83.0" prefWidth="189.0">
+               <styleClass>
+                  <String fx:value="strict_border" />
+                  <String fx:value="list_class" />
+               </styleClass>
+            </ListView>
+            <Button fx:id="remove_pat_btn" layoutX="271.0" layoutY="96.0" mnemonicParsing="false" onAction="#delete_patient" prefHeight="33.0" prefWidth="109.0" text="Удалить" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -66,7 +72,7 @@
                   <String fx:value="strict_border" />
                </styleClass>
             </Button>
-            <Button fx:id="add_rec_btn" layoutX="14.0" layoutY="87.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="164.0" text="Добавить справку" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0">
+            <Button onAction="#add_reciepe" fx:id="add_rec_btn" layoutX="14.0" layoutY="87.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="164.0" text="Добавить справку" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
