@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.Doctor;
 import sample.Patient;
@@ -45,6 +46,20 @@ public class PatientSceneController implements Initializable {
     private TextField pat_search_field;
     @FXML
     private ListView pats_listview;
+
+    @FXML private void open_add_patient(ActionEvent e) throws IOException {
+        Stage dialog = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("./AddPatScene.fxml"));
+        Stage parentStage = (Stage)add_pat_btn.getScene().getWindow();
+
+        dialog.setTitle("Добавить Пациента");
+        dialog.setScene(new Scene(root, 500, 177));
+
+        dialog.initOwner(parentStage);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+
+        dialog.showAndWait();
+    }
 
     private Patient choosedPatient;
     private List<Patient> patients = null;

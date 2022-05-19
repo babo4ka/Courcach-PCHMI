@@ -22,6 +22,9 @@ public class Patient {
     //др
     @Getter @Setter
     private Date birthday;
+    //район
+    @Getter @Setter
+    private Districts district;
     //id
     @Getter @Setter
     private long id;
@@ -29,11 +32,11 @@ public class Patient {
     @Getter
     private static List<Patient> patients = new ArrayList<>();
 
-    public Patient(String _name, String _surname, Date _birthday){
+    public Patient(String _name, String _surname, Date _birthday, Districts _district){
         this.setName(_name);
         this.setSurname(_surname);
         this.setBirthday(_birthday);
-
+        this.setDistrict(_district);
         this.setId(new Date().getTime());
 
         patients.add(this);
@@ -41,10 +44,11 @@ public class Patient {
         this.savePatient();
     }
 
-    private Patient(String _name, String _surname, Date _birthday, long _id){
+    private Patient(String _name, String _surname, Date _birthday, Districts _district, long _id){
         this.setName(_name);
         this.setSurname(_surname);
         this.setBirthday(_birthday);
+        this.setDistrict(_district);
 
         this.setId(_id);
     }
@@ -61,7 +65,7 @@ public class Patient {
                 String [] data = line.split(separator);
                 long id = Long.parseLong(data[3]);
                 Date bd = new Date(TimeUnit.SECONDS.toMillis(Long.parseLong(data[2])));
-                patients.add(new Patient(data[0], data[1], bd, id));
+                //patients.add(new Patient(data[0], data[1], bd, id));
                 line = reader.readLine();
             }
 
