@@ -34,7 +34,7 @@
             <String fx:value="strict_border" />
          </styleClass></TextField>
       <ListView fx:id="pats_listview" layoutX="15.0" layoutY="123.0" prefHeight="250.0" prefWidth="260.0" styleClass="list_class" AnchorPane.leftAnchor="15.0" />
-      <Button onAction="#open_add_patient" fx:id="add_pat_btn" layoutX="15.0" layoutY="393.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="260.0" text="Добавить пациента">
+      <Button fx:id="add_pat_btn" layoutX="15.0" layoutY="393.0" mnemonicParsing="false" onAction="#open_add_patient" prefHeight="25.0" prefWidth="260.0" text="Добавить пациента">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
