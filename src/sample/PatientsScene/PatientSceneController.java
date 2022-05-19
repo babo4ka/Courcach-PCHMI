@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -13,10 +14,12 @@ import sample.Doctor;
 import sample.Patient;
 
 import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class PatientSceneController {
+public class PatientSceneController implements Initializable {
 
     @FXML
     private MenuButton nav_menu;
@@ -103,5 +106,37 @@ public class PatientSceneController {
         doctorsState.show();
 
         ((Stage)add_pat_btn.getScene().getWindow()).close();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        patients = Patient.getPatients();
+
+        for(Patient p : patients){
+            patsList.add(p);
+        }
+
+        pats_listview.setItems(patsList);
+
+        pats_listview.setCellFactory(param -> new ListCell<Patient>(){
+            @Override
+            protected void updateItem(Patient item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if(empty || item == null){
+                    setGraphic(null);
+                    return;
+                }
+
+                setGraphic(new Label(item.getName() + " " + item.getSurname()));
+            }
+        });
+
+        pats_listview.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    choosedPatient = (Patient) newValue;
+                    pat_name_lbl.setText("Пациент " + choosedPatient.getSurname() + " " + choosedPatient.getName());
+                    pat_id_lbl.setText("ID: " + choosedPatient.getId());
+                });
     }
 }
