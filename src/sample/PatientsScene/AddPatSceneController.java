@@ -44,8 +44,8 @@ public class AddPatSceneController implements Initializable {
 
 
         new Patient(pat_name_input.getText(), pat_surname_input.getText(), birthday, Districts.fromString(pat_dist_input.getValue().toString()));
-//        pat_error_adding.setText("Успешно добавлен новый пациент!");
-//        pat_error_adding.setVisible(true);
+        pat_error_adding.setText("Успешно добавлен новый пациент!");
+        pat_error_adding.setVisible(true);
     }
 
     @Override

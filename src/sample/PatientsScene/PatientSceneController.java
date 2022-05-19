@@ -75,11 +75,12 @@ public class PatientSceneController implements Initializable {
             BufferedReader reader = new BufferedReader(new FileReader(source));
 
             String line;
-            String docToDelete = choosedPatient.toSaveString();
+            String patToDelete = choosedPatient.toSaveString();
+
             List<String> lines = new ArrayList<>();
 
             while((line = reader.readLine()) != null){
-                if(!line.equals(docToDelete)){
+                if(!line.equals(patToDelete)){
                     lines.add(line);
                 }
             }

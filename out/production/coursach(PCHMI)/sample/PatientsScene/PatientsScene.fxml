@@ -56,7 +56,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="remove_pat_btn" layoutX="271.0" layoutY="96.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="109.0" text="Удалить" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+            <Button onAction="#delete_patient" fx:id="remove_pat_btn" layoutX="271.0" layoutY="96.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="109.0" text="Удалить" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
