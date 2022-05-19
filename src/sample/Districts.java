@@ -15,6 +15,13 @@ public enum Districts {
         this.name = _name;
     }
 
+    public static Districts fromString(String _name){
+        for(Districts d: Districts.values()){
+            if(d.name.equals(_name))return d;
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         return this.name;

@@ -63,9 +63,9 @@ public class Patient {
 
             while(line != null){
                 String [] data = line.split(separator);
-                long id = Long.parseLong(data[3]);
+                long id = Long.parseLong(data[4]);
                 Date bd = new Date(TimeUnit.SECONDS.toMillis(Long.parseLong(data[2])));
-                //patients.add(new Patient(data[0], data[1], bd, id));
+                patients.add(new Patient(data[0], data[1], bd, Districts.fromString(data[3]), id));
                 line = reader.readLine();
             }
 
@@ -75,7 +75,7 @@ public class Patient {
     }
 
     public String toSaveString(){
-        return this.getName() + separator + this.getSurname() + separator + this.getBirthday().getTime() + separator + this.getId();
+        return this.getName() + separator + this.getSurname() + separator + this.getBirthday().getTime() + separator + this.getDistrict().toString() + separator + this.getId();
     }
 
     private void savePatient(){
