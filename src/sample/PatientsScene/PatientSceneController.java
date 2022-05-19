@@ -65,8 +65,11 @@ public class PatientSceneController implements Initializable {
     }
 
     private Patient choosedPatient;
-    private List<Patient> patients = null;
+    private List<Patient> patients = new ArrayList<>();
     private ObservableList<Patient> patsList = FXCollections.observableArrayList();
+
+    private List<String> recieps = new ArrayList<>();
+    private ObservableList<String> recsList = FXCollections.observableArrayList();
 
     @FXML
     private void delete_patient(ActionEvent e){
@@ -163,6 +166,12 @@ public class PatientSceneController implements Initializable {
                     choosedPatient = (Patient) newValue;
                     pat_name_lbl.setText("Пациент " + choosedPatient.getSurname() + " " + choosedPatient.getName());
                     pat_id_lbl.setText("ID: " + choosedPatient.getId());
+                    recs_listview.getItems().clear();
+                    for(Date r: choosedPatient.getRecieps()){
+                        recsList.add(r.toString());
+                    }
+
+                    recs_listview.setItems(recsList);
                 });
     }
 }
