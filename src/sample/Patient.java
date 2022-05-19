@@ -3,9 +3,11 @@ package sample;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 public class Patient {
@@ -21,20 +23,54 @@ public class Patient {
     @Getter @Setter
     private Date birthday;
     //id
-    @Getter
+    @Getter @Setter
     private long id;
+
+    @Getter
+    private static List<Patient> patients = new ArrayList<>();
 
     public Patient(String _name, String _surname, Date _birthday){
         this.setName(_name);
         this.setSurname(_surname);
         this.setBirthday(_birthday);
 
-        this.id = new Date().getTime();
+        this.setId(new Date().getTime());
+
+        patients.add(this);
 
         this.savePatient();
     }
 
-    private String toSaveString(){
+    private Patient(String _name, String _surname, Date _birthday, long _id){
+        this.setName(_name);
+        this.setSurname(_surname);
+        this.setBirthday(_birthday);
+
+        this.setId(_id);
+    }
+
+    public static void LoadPatients(){
+        try{
+            File patientsFile = new File("./src/sample/database/patients.txt");
+            FileReader fileReader = new FileReader(patientsFile);
+            BufferedReader reader = new BufferedReader(fileReader);
+
+            String line = reader.readLine();
+
+            while(line != null){
+                String [] data = line.split(separator);
+                long id = Long.parseLong(data[3]);
+                Date bd = new Date(TimeUnit.SECONDS.toMillis(Long.parseLong(data[2])));
+                patients.add(new Patient(data[0], data[1], bd, id));
+                line = reader.readLine();
+            }
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public String toSaveString(){
         return this.getName() + separator + this.getSurname() + separator + this.getBirthday().getTime() + separator + this.getId();
     }
 

@@ -52,10 +52,7 @@ public class Doctor {
                 doctors.add(new Doctor(data[0], data[1], Long.parseLong(data[2])));
                 line = reader.readLine();
             }
-        }
-        catch (FileNotFoundException e){
-            e.printStackTrace();
-        }catch (IOException e){
+        } catch (IOException e){
             e.printStackTrace();
         }
 
