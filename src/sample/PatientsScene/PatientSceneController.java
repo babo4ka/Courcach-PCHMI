@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import sample.Doctor;
+import sample.Districts;
 import sample.Patient;
 
 import java.io.*;
@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Stream;
 
 public class PatientSceneController implements Initializable {
 
@@ -45,6 +46,14 @@ public class PatientSceneController implements Initializable {
 
     @FXML
     private TextField pat_search_field;
+    @FXML
+    private ComboBox dist_to_srch_input;
+
+    @FXML
+    private DatePicker start_bd_search;
+    @FXML
+    private DatePicker end_bd_search;
+
     @FXML
     private ListView pats_listview;
     @FXML
@@ -137,13 +146,25 @@ public class PatientSceneController implements Initializable {
         ((Stage)add_pat_btn.getScene().getWindow()).close();
     }
 
+    @FXML
+    private void search_patients(){
+        if(dist_to_srch_input.getValue() != null){
+            patients = Patient.getPatients();
+            Stream<Patient> result = Stream.of(patients.toArray(new Patient[0])).filter(s->s.getDistrict().equals(Districts.fromString(dist_to_srch_input.getValue().toString())));
+            patients = new ArrayList<>();
+            result.forEach(s->patients.add(s));
+        }
+
+        patsList.clear();
+        patsList.addAll(patients);
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         patients = Patient.getPatients();
 
-        for(Patient p : patients){
-            patsList.add(p);
-        }
+        patsList.addAll(patients);
 
         pats_listview.setItems(patsList);
 
@@ -173,5 +194,7 @@ public class PatientSceneController implements Initializable {
 
                     recs_listview.setItems(recsList);
                 });
+        dist_to_srch_input.getItems().addAll(Districts.values());
+
     }
 }

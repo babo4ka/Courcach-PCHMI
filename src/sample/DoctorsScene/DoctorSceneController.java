@@ -126,7 +126,7 @@ public class DoctorSceneController implements Initializable {
         Stage patientsState = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("../PatientsScene/PatientsScene.fxml"));
         patientsState.setTitle("Поликлиника");
-        patientsState.setScene(new Scene(root, 700, 500));
+        patientsState.setScene(new Scene(root, 700, 550));
         patientsState.show();
 
         ((Stage)add_doc_btn.getScene().getWindow()).close();
