@@ -16,6 +16,8 @@ import sample.Patient;
 
 import java.io.*;
 import java.net.URL;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,6 +26,7 @@ import java.util.stream.Stream;
 
 public class PatientSceneController implements Initializable {
 
+    //навигация
     @FXML
     private MenuButton nav_menu;
 
@@ -32,11 +35,13 @@ public class PatientSceneController implements Initializable {
     @FXML
     private MenuItem nav_doctors;
 
+    //инфо о пациенте
     @FXML
     private Label pat_name_lbl;
     @FXML
     private Label pat_id_lbl;
 
+    //управление пациентом
     @FXML
     private Button add_pat_btn;
     @FXML
@@ -44,6 +49,7 @@ public class PatientSceneController implements Initializable {
     @FXML
     private Button add_rec_btn;
 
+    //поиск пациента
     @FXML
     private TextField pat_search_field;
     @FXML
@@ -54,11 +60,13 @@ public class PatientSceneController implements Initializable {
     @FXML
     private DatePicker end_bd_search;
 
+    //отображения пациентов и справок
     @FXML
     private ListView pats_listview;
     @FXML
     private ListView recs_listview;
 
+    //открытие модального окна для добавления нового пациента
     @FXML private void open_add_patient(ActionEvent e) throws IOException {
         Stage dialog = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("./AddPatScene.fxml"));
@@ -73,13 +81,16 @@ public class PatientSceneController implements Initializable {
         dialog.showAndWait();
     }
 
+    //выбранный пациент для отображения
     private Patient choosedPatient;
+    //список пациентов для отображения
     private List<Patient> patients = new ArrayList<>();
     private ObservableList<Patient> patsList = FXCollections.observableArrayList();
-
+    //список справок для отображения
     private List<String> recieps = new ArrayList<>();
     private ObservableList<String> recsList = FXCollections.observableArrayList();
 
+    //удаление пациента
     @FXML
     private void delete_patient(ActionEvent e){
         if(choosedPatient == null)return;
@@ -128,6 +139,7 @@ public class PatientSceneController implements Initializable {
 
     }
 
+    //добавление справки о болезни
     @FXML
     private void add_reciepe(ActionEvent e){
         if(choosedPatient == null)return;
@@ -135,6 +147,7 @@ public class PatientSceneController implements Initializable {
         choosedPatient.addReciepe(new Date());
     }
 
+    //открытие сцены с докторами
     @FXML
     private void open_doctors_scene(ActionEvent e) throws IOException {
         Stage doctorsState = new Stage();
@@ -146,14 +159,31 @@ public class PatientSceneController implements Initializable {
         ((Stage)add_pat_btn.getScene().getWindow()).close();
     }
 
+    //поиск пациентов
     @FXML
     private void search_patients(){
+        patients = Patient.getPatients();
+
         if(dist_to_srch_input.getValue() != null){
-            patients = Patient.getPatients();
             Stream<Patient> result = Stream.of(patients.toArray(new Patient[0])).filter(s->s.getDistrict().equals(Districts.fromString(dist_to_srch_input.getValue().toString())));
             patients = new ArrayList<>();
             result.forEach(s->patients.add(s));
         }
+
+        if(start_bd_search.getValue() != null){
+            long startValue = Date.from(Instant.from(start_bd_search.getValue().atStartOfDay(ZoneId.systemDefault()))).getTime();
+            Stream<Patient> result = Stream.of(patients.toArray(new Patient[0])).filter(s->s.getBirthday().getTime()>=startValue);
+            patients = new ArrayList<>();
+            result.forEach((s->patients.add(s)));
+        }
+
+        if(end_bd_search.getValue() != null){
+            long endValue = Date.from(Instant.from(end_bd_search.getValue().atStartOfDay(ZoneId.systemDefault()))).getTime();
+            Stream<Patient> result = Stream.of(patients.toArray(new Patient[0])).filter(s->s.getBirthday().getTime()<=endValue);
+            patients = new ArrayList<>();
+            result.forEach((s->patients.add(s)));
+        }
+
 
         patsList.clear();
         patsList.addAll(patients);
@@ -162,12 +192,14 @@ public class PatientSceneController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //заполнения списка пациентов
         patients = Patient.getPatients();
 
         patsList.addAll(patients);
 
         pats_listview.setItems(patsList);
 
+        //настройка отображения пациентов в списке
         pats_listview.setCellFactory(param -> new ListCell<Patient>(){
             @Override
             protected void updateItem(Patient item, boolean empty) {
@@ -182,6 +214,7 @@ public class PatientSceneController implements Initializable {
             }
         });
 
+        //обработчик нажатия на пациента в списке
         pats_listview.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
                     choosedPatient = (Patient) newValue;
@@ -194,6 +227,7 @@ public class PatientSceneController implements Initializable {
 
                     recs_listview.setItems(recsList);
                 });
+
         dist_to_srch_input.getItems().addAll(Districts.values());
 
     }

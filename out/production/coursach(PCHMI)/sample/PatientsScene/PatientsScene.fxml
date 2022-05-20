@@ -92,7 +92,7 @@
             <String fx:value="strict_border" />
          </styleClass>
       </ComboBox>
-      <DatePicker fx:id="start_bd_search" layoutX="16.0" layoutY="159.0" prefHeight="25.0" prefWidth="123.0" promptText="От" styleClass="strict_border" />
-      <DatePicker fx:id="end_bd_search" layoutX="156.0" layoutY="159.0" prefHeight="25.0" prefWidth="123.0" promptText="По" styleClass="strict_border" />
+      <DatePicker onAction="#search_patients" fx:id="start_bd_search" layoutX="16.0" layoutY="159.0" prefHeight="25.0" prefWidth="123.0" promptText="От" styleClass="strict_border" />
+      <DatePicker onAction="#search_patients" fx:id="end_bd_search" layoutX="156.0" layoutY="159.0" prefHeight="25.0" prefWidth="123.0" promptText="По" styleClass="strict_border" />
    </children>
 </AnchorPane>
