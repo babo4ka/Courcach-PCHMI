@@ -17,13 +17,16 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import sample.Districts;
 import sample.Doctor;
+import sample.Patient;
 
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class DoctorSceneController implements Initializable {
 
@@ -71,7 +74,7 @@ public class DoctorSceneController implements Initializable {
     }
 
     private Doctor choosedDoctor = null;
-    private List<Doctor> doctors = null;
+    private List<Doctor> doctors = new ArrayList<>();
     private ObservableList<Doctor> docsList = FXCollections.observableArrayList();
 
     @FXML
@@ -133,7 +136,24 @@ public class DoctorSceneController implements Initializable {
 
     }
 
+    //поиск докторов
+    @FXML
+    private void search_doctors(){
+        doctors = Doctor.getDoctors();
 
+        if(!doc_search_field.getText().equals("")){
+            Stream<Doctor> result =
+                    Stream.of(doctors.toArray(new Doctor[0])).filter
+                            (s->s.toNameString().lastIndexOf(doc_search_field.getText().toLowerCase(Locale.ROOT)) != -1
+                                    || s.toNameStringReverse().lastIndexOf(doc_search_field.getText().toLowerCase(Locale.ROOT)) != -1);
+            doctors = new ArrayList<>();
+            result.forEach((s->doctors.add(s)));
+        }
+
+
+        docsList.clear();
+        docsList.addAll(doctors);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

@@ -28,7 +28,7 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <TextField fx:id="doc_search_field" layoutX="15.0" layoutY="72.0" prefHeight="25.0" prefWidth="260.0" promptText="Поиск доктора...">
+      <TextField onKeyReleased="#search_doctors" fx:id="doc_search_field" layoutX="15.0" layoutY="72.0" prefHeight="25.0" prefWidth="260.0" promptText="Поиск доктора...">
          <styleClass>
             <String fx:value="search_field_class" />
             <String fx:value="strict_border" />

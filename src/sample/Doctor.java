@@ -7,6 +7,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class Doctor {
 
@@ -58,6 +59,13 @@ public class Doctor {
 
     }
 
+    public String toNameString(){
+        return (this.getName() + " " + this.getSurname()).toLowerCase(Locale.ROOT);
+    }
+
+    public String toNameStringReverse(){
+        return (this.getSurname() + " " + this.getName()).toLowerCase(Locale.ROOT);
+    }
 
     public String toSaveString(){
         return this.getName() + separator + this.getSurname() + separator + this.getId();
