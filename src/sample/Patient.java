@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 public class Patient {
@@ -135,6 +132,14 @@ public class Patient {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public String toNameString(){
+        return (this.getName() + " " + this.getSurname()).toLowerCase(Locale.ROOT);
+    }
+
+    public String toNameStringReverse(){
+        return (this.getSurname() + " " + this.getName()).toLowerCase(Locale.ROOT);
     }
 
     public String toSaveString(){

@@ -18,10 +18,7 @@ import java.io.*;
 import java.net.URL;
 import java.time.Instant;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class PatientSceneController implements Initializable {
@@ -180,6 +177,15 @@ public class PatientSceneController implements Initializable {
         if(end_bd_search.getValue() != null){
             long endValue = Date.from(Instant.from(end_bd_search.getValue().atStartOfDay(ZoneId.systemDefault()))).getTime();
             Stream<Patient> result = Stream.of(patients.toArray(new Patient[0])).filter(s->s.getBirthday().getTime()<=endValue);
+            patients = new ArrayList<>();
+            result.forEach((s->patients.add(s)));
+        }
+
+        if(!pat_search_field.getText().equals("")){
+            Stream<Patient> result =
+                    Stream.of(patients.toArray(new Patient[0])).filter
+                            (s->s.toNameString().lastIndexOf(pat_search_field.getText().toLowerCase(Locale.ROOT)) != -1
+                                    || s.toNameStringReverse().lastIndexOf(pat_search_field.getText().toLowerCase(Locale.ROOT)) != -1);
             patients = new ArrayList<>();
             result.forEach((s->patients.add(s)));
         }
