@@ -143,6 +143,19 @@ public class PatientSceneController implements Initializable {
 
     }
 
+    //открытие сцены с анализом заболеваемости
+    @FXML
+    private void open_analyze() throws IOException {
+        Stage analyze = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("./AnalyzeScene.fxml"));
+
+        analyze.setTitle("Анализ заболеваемости");
+        analyze.setScene(new Scene(root, 600, 400));
+
+
+        analyze.show();
+    }
+
     //добавление справки о болезни
     @FXML
     private void add_reciepe(ActionEvent e){
@@ -200,7 +213,6 @@ public class PatientSceneController implements Initializable {
 
         patsList.clear();
         patsList.addAll(patients);
-
     }
 
     @Override

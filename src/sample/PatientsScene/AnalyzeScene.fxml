@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../CommonStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PatientsScene.AnalyzeController">
+   <children>
+      <Label layoutX="211.0" layoutY="14.0" text="Анализ заболеваемости">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="start_dates" layoutX="30.0" layoutY="346.0" prefHeight="25.0" prefWidth="123.0" styleClass="strict_border" />
+      <DatePicker fx:id="end_dates" layoutX="211.0" layoutY="346.0" prefHeight="25.0" prefWidth="123.0" styleClass="strict_border" />
+      <Button fx:id="do_analyze_btn" layoutX="439.0" layoutY="346.0" mnemonicParsing="false" onAction="#analyze" prefHeight="25.0" prefWidth="131.0" text="Анализ">
+         <styleClass>
+            <String fx:value="strict_border" />
+            <String fx:value="add_btn_class" />
+            <String fx:value="handed-cursor" />
+         </styleClass>
+      </Button>
+      <PieChart fx:id="analyze_chart" layoutX="50.0" layoutY="48.0" prefHeight="267.0" prefWidth="500.0" />
+   </children>
+</AnchorPane>
