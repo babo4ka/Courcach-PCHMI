@@ -16,6 +16,7 @@ import sample.Patient;
 
 import java.io.*;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.util.*;
@@ -37,6 +38,10 @@ public class PatientSceneController implements Initializable {
     private Label pat_name_lbl;
     @FXML
     private Label pat_id_lbl;
+    @FXML
+    private Label pat_bd_lbl;
+    @FXML
+    private Label pat_dist_lbl;
 
     //управление пациентом
     @FXML
@@ -129,6 +134,8 @@ public class PatientSceneController implements Initializable {
 
             pat_name_lbl.setText("Пациент Фамилия Имя");
             pat_id_lbl.setText("ID:");
+            pat_bd_lbl.setText("Дата рождения:");
+            pat_dist_lbl.setText("Район:");
 
         }catch (IOException err){
             err.printStackTrace();
@@ -226,9 +233,11 @@ public class PatientSceneController implements Initializable {
                     choosedPatient = (Patient) newValue;
                     pat_name_lbl.setText("Пациент " + choosedPatient.getSurname() + " " + choosedPatient.getName());
                     pat_id_lbl.setText("ID: " + choosedPatient.getId());
+                    pat_bd_lbl.setText("Дата рождения: " + new SimpleDateFormat("dd.MM.yyyy").format(choosedPatient.getBirthday()));
+                    pat_dist_lbl.setText("Район: " + choosedPatient.getDistrict());
                     recs_listview.getItems().clear();
                     for(Date r: choosedPatient.getRecieps()){
-                        recsList.add(r.toString());
+                        recsList.add(new SimpleDateFormat("dd.MM.yyyy hh:mm:ss").format(r));
                     }
 
                     recs_listview.setItems(recsList);
