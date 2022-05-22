@@ -106,6 +106,13 @@ public class Patient {
         }
     }
 
+    public static Patient getPatientByReciepe(Date _reciepe){
+        for(Patient p : getPatients()){
+            if(p.getRecieps().contains(_reciepe))return p;
+        }
+        return null;
+    }
+
     public static void LoadPatients(){
         try{
             File patientsFile = new File("./src/sample/database/patients.txt");

@@ -29,13 +29,13 @@ public class AnalyzeController {
     @FXML
     private void analyze(){
         slices.clear();
+        recieps.clear();
         for(Districts d: Districts.values()){
             slices.put(d.toString(), new PieChart.Data(d.toString(), 0));
         }
 
         for(Patient p : Patient.getPatients()){
             recieps.addAll(p.getRecieps());
-            slices.get(p.getDistrict().toString()).setPieValue(slices.get(p.getDistrict().toString()).getPieValue()+p.getRecieps().size());
         }
 
         if(start_dates.getValue() != null){
@@ -51,13 +51,18 @@ public class AnalyzeController {
             result.forEach(s->recieps.add(s));
         }
 
+        Patient p;
+        for(Date r:recieps){
+            if((p = Patient.getPatientByReciepe(r)) != null){
+                slices.get(p.getDistrict().toString()).setPieValue(slices.get(p.getDistrict().toString()).getPieValue() + p.getRecieps().size());
+            }
+        }
+
         analyze_chart.getData().clear();
         Stream<PieChart.Data> result = Stream.of(slices.values().toArray(new PieChart.Data[0])).filter(s->s.getPieValue()!=0);
         result.forEach(s->analyze_chart.getData().add(s));
 
-        for(Date r: recieps){
-                System.out.println(r);
-        }
+
     }
 
 }
