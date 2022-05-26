@@ -103,8 +103,8 @@
          </styleClass>
       </ComboBox>
       <DatePicker fx:id="start_bd_search" layoutX="16.0" layoutY="159.0" onAction="#search_patients" prefHeight="25.0" prefWidth="123.0" promptText="От" styleClass="strict_border" />
-      <DatePicker fx:id="end_bd_search" layoutX="156.0" layoutY="159.0" onAction="#search_patients" prefHeight="25.0" prefWidth="123.0" promptText="По" styleClass="strict_border" />
-      <Button onAction="#open_analyze" fx:id="open_analyze_btn" layoutX="348.0" layoutY="493.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="337.0" text="Анализ заболеваемости">
+      <DatePicker fx:id="end_bd_search" layoutX="156.0" layoutY="159.0" onAction="#search_patients" prefHeight="27.0" prefWidth="119.0" promptText="По" styleClass="strict_border" />
+      <Button fx:id="open_analyze_btn" layoutX="348.0" layoutY="493.0" mnemonicParsing="false" onAction="#open_analyze" prefHeight="33.0" prefWidth="337.0" text="Анализ заболеваемости">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

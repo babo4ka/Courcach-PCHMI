@@ -1,30 +1,20 @@
 package sample.DoctorsScene;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import sample.Districts;
 import sample.Doctor;
-import sample.Patient;
 
 import java.io.*;
 import java.net.URL;
-import java.time.Instant;
-import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Stream;
 
